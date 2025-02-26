@@ -1,0 +1,65 @@
+{
+    "name": "workflow-yolox_train",
+    "description": "workflow-yolox_train",
+    "steps": [
+        {
+            "name": "yolox_train",
+            "type": "job",
+            "title": "yolox_train",
+            "inputs": [],
+            "outputs": [],
+            "properties": {
+                "kind": "job",
+                "metadata": {
+                    "name": "workflow-0909406b05684b97b6d30fe9b39c4d4c"
+                },
+                "spec": {
+                    "resource": {
+                        "node_count": 1,
+                        "policy": "regular",
+                        "flavor": "$ref/parameters/train_flavor_yolox_train"
+                    },
+                    "volumes": [
+                        {
+                            "nfs": {
+                                "nfs_server_path": "3144b8b9-b758-4bb0-99ca-30bfbe51d0ef.sfsturbo.internal:/",
+                                "local_path": "/home/ma-user/work",
+                                "read_only": false
+                            }
+                        }
+                    ],
+                    "schedule_policy": {
+                        "priority": 3
+                    }
+                },
+                "algorithm": {
+                    "command": "export PYTHONPATH=/home/ma-user/work/ymxwork/NIPS/YOLO-World:$PYTHONPATH && /home/ma-user/work/ymxwork/NIPS/env/yolox/bin/python3.9 /home/ma-user/work/ymxwork/NIPS/YOLO-World/FDLNet/scripts/train_edge.py >> /home/ma-user/work/ymxwork/NIPS/train/output.log 2>&1",
+                    "parameters": [],
+                    "engine": {
+                        "image_url": "inftech/math:1.20_poly_yolox"
+                    }
+                }
+            },
+            "depend_steps": []
+        }
+    ],
+    "data_requirements": [],
+    "data": [],
+    "parameters": [
+        {
+            "name": "train_flavor_yolox_train",
+            "type": "json",
+            "default": {
+                "flavor_id": "modelarts.pool.visual.8xlarge",
+                "pool_id": "inf-a800-prod-pool-3aae24e9df0448b5a4bc28601f5c5f84"
+            },
+            "description": "\u8bad\u7ec3\u8d44\u6e90\u89c4\u683c",
+            "format": "train_flavor",
+            "used_steps": [
+                "yolox_train"
+            ]
+        }
+    ],
+    "storages": [],
+    "policy": {}
+}
