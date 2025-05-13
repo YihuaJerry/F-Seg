@@ -1,4 +1,4 @@
-# Fourier Filtering Traffic Low-Light Segmentation(ITSC2025)
+# Fourier Filtering Traffic Low-Light Segmentation
 ## 环境准备
 ### conda环境
 ```
